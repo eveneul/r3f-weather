@@ -2,8 +2,17 @@ import { Canvas } from "@react-three/fiber";
 import { Light } from "./Light";
 import { Earth } from "./Earth";
 import Weather from "./Weather";
+import { useEffect } from "react";
+import { getCurrentWeather } from "../utils/weatherAPI";
 
 export function Scene() {
+  console.log(import.meta.env.VITE_WEATHER_API_KEY, "...");
+  const key = import.meta.env.VITE_WEATHER_API_KEY;
+
+  useEffect(() => {
+    getCurrentWeather(44.34, 10.99, key);
+  }, []);
+
   return (
     <Canvas camera={{ position: [0, 1, 5] }}>
       <color attach={"background"} args={["rgba(67, 127, 240, 1)"]}></color>
