@@ -28,7 +28,7 @@ export function Scene() {
       <color attach={"background"} args={["rgba(67, 127, 240, 1)"]}></color>
       <Light />
       <Earth position={[0, -2, 0]} />
-      {cityContent && (
+      {/* {cityContent && (
         <>
           <Weather
             position={[-2, 0, 0]}
@@ -51,7 +51,14 @@ export function Scene() {
             weather={cityContent[4].weather.weather[0].main.toLowerCase()}
           />
         </>
-      )}
+      )} */}
+      {cityContent?.map((city, i) => (
+        <Weather
+          key={i}
+          position={[-2 + i, 0, 0]}
+          weather={city.weather.weather[0].main.toLowerCase()}
+        />
+      ))}
     </Canvas>
   );
 }
