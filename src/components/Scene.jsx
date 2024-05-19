@@ -2,16 +2,36 @@ import { Canvas } from "@react-three/fiber";
 import { Light } from "./Light";
 import { Earth } from "./Earth";
 import Weather from "./Weather";
-import { useEffect } from "react";
-import { getCurrentWeather } from "../utils/weatherAPI";
+import { useEffect, useState } from "react";
+import { getCityWeather, getCurrentWeather } from "../utils/weatherAPI";
+import { cities } from "../utils/cities";
 
+const key = import.meta.env.VITE_WEATHER_API_KEY;
 export function Scene() {
-  console.log(import.meta.env.VITE_WEATHER_API_KEY, "...");
-  const key = import.meta.env.VITE_WEATHER_API_KEY;
+  const [cityContent, setCityContent] = useState();
+
+  const getCitiesWeather = () => {
+    const promies = cities.map((city) => getCityWeather(city, key));
+    Promise.all(promies)
+      .then((data) => {
+        setCityContent(data);
+      })
+      .catch((error) => console.log("error..", error));
+  };
 
   useEffect(() => {
-    getCurrentWeather(44.34, 10.99, key);
+    getCitiesWeather();
+    // const fetchData = async () => {
+    //   const data = await getCityWeather("Seoul", key);
+    //   console.log(data);
+    // };
+
+    // fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log(cityContent, "cityContent"), [cityContent];
+  });
 
   return (
     <Canvas camera={{ position: [0, 1, 5] }}>
