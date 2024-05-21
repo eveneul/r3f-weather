@@ -11,7 +11,7 @@ export function Earth() {
 
   return (
     <mesh
-      position={[0, -2, 0]}
+      position={[0, 0, 0]}
       ref={earthRef}
       scale={1.3}
       rotation-x={-Math.PI / 2}

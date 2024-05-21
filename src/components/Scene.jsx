@@ -27,13 +27,21 @@ export function Scene() {
     <>
       <Light />
       <Earth />
-      {cityContent?.map((city, i) => (
-        <Weather
-          key={i}
-          position={[-2 + i, 0, 0]}
-          weather={city.weather.weather[0].main.toLowerCase()}
-        />
-      ))}
+      {cityContent?.map((city, i) => {
+        const angle = (i / (cityContent.length - 1)) * Math.PI;
+        const radius = 2;
+        const x = Math.cos(angle).toFixed(2) * radius;
+        const y = Math.sin(angle).toFixed(2) * radius;
+        console.log(Math.cos(0.785));
+        return (
+          <Weather
+            key={i}
+            position={[x, y, 0]}
+            rotation-y={i + 1}
+            weather={city.weather.weather[0].main.toLowerCase()}
+          />
+        );
+      })}
     </>
   );
 }
