@@ -23,7 +23,7 @@ export default function Weather(props) {
   }, []);
 
   return (
-    <group position={position} rotation-y={rotationY}>
+    <group position={position} rotation-y={rotationY} name="weather">
       <motion.mesh
         whileHover={{ scale: 1.5, transition: 0.5 }}
         ref={ref}
