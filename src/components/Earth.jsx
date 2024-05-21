@@ -1,3 +1,4 @@
+import { Html } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
@@ -13,11 +14,8 @@ export function Earth() {
   });
 
   return (
-    <mesh
+    <group
       position={[0, 0, 0]}
-      ref={earthRef}
-      scale={1.3}
-      rotation-x={-Math.PI / 2}
       onPointerEnter={() => {
         setIsHovered(true);
       }}
@@ -25,7 +23,16 @@ export function Earth() {
         setIsHovered(false);
       }}
     >
-      <primitive object={glb.scene}></primitive>
-    </mesh>
+      <mesh ref={earthRef} scale={1.3} rotation-x={-Math.PI / 2}>
+        <primitive object={glb.scene}></primitive>
+      </mesh>
+      {isHovered && (
+        <Html center>
+          <div className="ico-rotation">
+            <img src="/images/icon/rotation.png" alt="icon" />
+          </div>
+        </Html>
+      )}
+    </group>
   );
 }

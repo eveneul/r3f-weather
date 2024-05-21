@@ -32,11 +32,13 @@ export function Scene() {
         const radius = 2;
         const x = Math.cos(angle).toFixed(2) * radius;
         const y = Math.sin(angle).toFixed(2) * radius;
+        console.log(city);
         return (
           <Weather
             key={i}
             position={[x, y, 0]}
             rotationY={i + 1}
+            cityName={city.city}
             weather={city.weather.weather[0].main.toLowerCase()}
           />
         );
