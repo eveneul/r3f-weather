@@ -8,3 +8,11 @@ canvas {
   width: 100vw !important;
   height: 100vh !important;
 }
+
+body {
+  background: radial-gradient(
+    circle,
+    rgb(83, 173, 241) 0%,
+    rgb(12, 73, 187) 100%
+  );
+}
