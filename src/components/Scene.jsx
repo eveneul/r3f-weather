@@ -26,7 +26,7 @@ export function Scene() {
   return (
     <>
       <Light />
-      <Earth position={[0, -2, 0]} />
+      <Earth />
       {cityContent?.map((city, i) => (
         <Weather
           key={i}
